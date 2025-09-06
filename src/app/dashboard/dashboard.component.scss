@@ -1,0 +1,62 @@
+/* || GENERAL & RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    caret-color: transparent;
+}
+
+/* COLORS */
+
+:root {
+--primary-bg-clr: #F9F9F9;
+--secondary-bg-clr: #FDFDFD;
+--header-bg-clr:#2075BA;
+--feature-clr: #EBB946
+--primary-font-clr: #616E78
+}
+
+/* CONTAINERS */
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0;
+}
+
+.dashboard-header {
+    display: flex; 
+    height: 10vh; 
+    width: 100vw; 
+    background-color: #2075BA;
+}
+
+.dashboard-club-header {
+    
+}
+
+.dashboard-queue {
+    
+}
+
+.dashboard-leaderboard {
+    
+}
+
+.dashboard-recent-activity {
+    
+}
+
+.dashboard-reading-history {
+    
+}
+
+.dashboard-my-book-reports {
+    
+}
+
+
