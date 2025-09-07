@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
+import { Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-book',
@@ -9,15 +9,24 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class BookComponent {
 
-  sampleBook = {
-    Title: "Book Title",
-    Author: "Book Author"
-  }
+  @Input() bookTitle: string = '';
+  @Input() bookAuthor: string = '';
+  @Input() bookPublished: string = '';
+  @Input() bookGenre: string = '';
+  @Input() bookImage: string = '';
 
-  @Output() bookDetail = new EventEmitter<any>();
+  
+  // Test to pass in Book Data to Parent Library Component (works, but Book will take Input)
 
-  emitBookDetail() {
-    this.bookDetail.emit(this.sampleBook)
-  }
+  // sampleBook = {
+  //   Title: "Book Title",
+  //   Author: "Book Author"
+  // }
+
+  // @Output() bookDetail = new EventEmitter<any>();
+
+  // emitBookDetail() {
+  //   this.bookDetail.emit(this.sampleBook)
+  // }
 
 }

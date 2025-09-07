@@ -1,0 +1,45 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* space between cards */
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc; /* subtle border */
+  border-radius: 8px; /* rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* soft shadow */
+  padding: 16px; /* spacing inside card */
+  margin: 12px; /* spacing between cards */
+  width: 100vw;
+  // min-width: 200px; /* optional width limit */
+  // max-width: 300px;
+  background-color: #fff; /* card background */
+}
+
+.book-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.book-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.book-author,
+.book-published,
+.book-genre {
+  font-size: 0.9em;
+  color: #555;
+  margin: 2px 0;
+}
+
+.book-cover {
+  height: 100px;
+  width: 75px;
+}

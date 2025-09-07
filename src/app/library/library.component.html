@@ -1,6 +1,8 @@
-Library 
-<app-book (bookDetail)="handleBook($event)"></app-book>
-
-<input [value]="textValue">
-
-Change to Library
+<app-book *ngFor="let book of bookList"
+[bookTitle]="book.Title"
+[bookAuthor]="book.Author"
+[bookPublished]="book.Published"
+[bookGenre]="book.Genre"
+[bookImage]="book.Image"
+>
+</app-book>
