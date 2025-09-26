@@ -1,0 +1,31 @@
+<div class="search-header-container">
+  <h1 class="search-header">Search Books</h1>
+</div>
+
+<div class="search-bar">
+  <form [formGroup]="searchForm" (ngSubmit)="searchTitle()">
+    <input formControlName="searchAll" placeholder="All Fields:" />
+    <input formControlName="searchTitle" placeholder="Title:" />
+    <input formControlName="searchAuthor" placeholder="Author:" />
+    <button type="submit">Search</button>
+  </form>
+
+  <div class="search-nav-buttons">
+    <button class="navigate" (click)="navigateToLibrary()">Library</button>
+    <button class="navigate" (click)="navigateToMembers()">Members</button>
+    <button class="navigate" (click)="navigateToDashboard()">Dashboard</button>
+  </div>
+</div>
+
+<div class="card-container">
+  <div *ngFor="let book of books" class="book-container">
+    <div class="book-card" (click)="navigateToDetail(book)">
+      <h2 class="book-title">{{ book.title }}</h2>
+      <p class="book-author">{{ book.author }}</p>
+      <p class="book-published">{{ book.year }}</p>
+      <div class="book-cover-wrapper">
+        <img class="book-cover" [src]="book.coverUrl" *ngIf="book.coverUrl" alt="{{ book.title }}" />
+      </div>
+    </div>
+  </div>
+</div>

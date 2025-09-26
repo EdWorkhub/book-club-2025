@@ -1,5 +1,19 @@
-Welcome to BBC 2025!
+<div class="login-container">
+  <div class="login-card">
 
-<button class="login" (click)="login()">
-  Login
-</button>
+    <h1 class="login-title">Book Club 2025 Login</h1>
+
+    <button class="google-login" (click)="loginWithGoogle()">
+      <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" />
+      <span>Sign in with Google</span>
+    </button>
+
+    <div class="divider">or</div>
+
+    <form [formGroup]="loginForm">
+      <input formControlName="email" placeholder="Email" class="login-input" />
+      <input formControlName="password" placeholder="Password" class="login-input" />
+      <button type="submit" class="login-button" (click)="loginWithEmail()">Login with Username</button>
+    </form>
+  </div>
+</div>

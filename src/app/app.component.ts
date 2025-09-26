@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth.service';
-import { FirebaseService } from './firebase.service';
+import { AuthService } from '../service/auth.service';
+import { FirebaseService } from '../service/firebase.service';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 

@@ -1,62 +1,74 @@
-/* || GENERAL & RESET */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    caret-color: transparent;
-}
-
-/* COLORS */
-
-:root {
---primary-bg-clr: #F9F9F9;
---secondary-bg-clr: #FDFDFD;
---header-bg-clr:#2075BA;
---feature-clr: #EBB946
---primary-font-clr: #616E78
-}
-
-/* CONTAINERS */
-
-.dashboard-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    margin: 0;
+/* Top Bar */
+.dashboard-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .dashboard-header {
-    display: flex; 
-    height: 10vh; 
-    width: 100vw; 
-    background-color: #2075BA;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #EBB946;  /* consistent orange */
 }
 
-.dashboard-club-header {
-    
+.dashboard-nav {
+  display: flex;
+  gap: 15px;
 }
 
-.dashboard-queue {
-    
+.nav-button {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
 }
 
-.dashboard-leaderboard {
-    
+.nav-button:hover {
+  background-color: #222;
 }
 
-.dashboard-recent-activity {
-    
+/* Dashboard container */
+.dashboard-container {
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.dashboard-reading-history {
-    
+/* Section styling */
+.dashboard-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.dashboard-my-book-reports {
-    
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
 }
 
+/* Card container (grid) */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 
+/* Individual dashboard card (placeholder) */
+.dashboard-card {
+  width: 180px;
+  height: 120px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}

@@ -1,26 +1,73 @@
+<!-- Top Navigation -->
+<div class="dashboard-topbar">
+  <h1 class="dashboard-header">Book Club</h1>
+  <nav class="dashboard-nav">
+    <button class="nav-button" (click)="navToLibrary()">Library</button>
+    <button class="nav-button" (click)="navToMembers()">Members</button>
+    <button class="nav-button" (click)="navToSearch()">Search</button>
+    <button class="nav-button" (click)="navToLogin()">Logout</button>
+  </nav>
+</div>
+
+<!-- Main Dashboard -->
 <div class="dashboard-container">
-    <button (click)="navigateToLibrary()">
-        Library
-    </button>
-    <div class="dashboard-header">
-        Header
+
+  <!-- Club Header -->
+  <div class="dashboard-section">
+    <h2 class="section-title">Club Header</h2>
+    <div class="card-container">
+      <div class="dashboard-card"></div>
+      <div class="dashboard-card"></div>
     </div>
-    <div class="dashboard-club-header">
-        Club Header
+  </div>
+
+  <!-- Queue -->
+  <div class="dashboard-section">
+    <h2 class="section-title">Queue</h2>
+    <div class="card-container">
+      <div class="dashboard-card"></div>
+      <div class="dashboard-card"></div>
+      <div class="dashboard-card"></div>
     </div>
-    <div class="dashboard-queue">
-        Queue
+  </div>
+
+  <!-- Leaderboard -->
+  <div class="dashboard-section">
+    <h2 class="section-title">Leaderboard</h2>
+    <div class="card-container">
+      <div class="dashboard-card"></div>
+      <div class="dashboard-card"></div>
+      <div class="dashboard-card"></div>
+      <div class="dashboard-card"></div>
     </div>
-    <div class="dashboard-leaderboard">
-        Leaderboard
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="dashboard-section">
+    <h2 class="section-title">Recent Activity</h2>
+    <div class="card-container">
+      <div class="dashboard-card"></div>
+      <div class="dashboard-card"></div>
     </div>
-    <div class="dashboard-recent-activity">
-        Recent Activity
+  </div>
+
+  <!-- Reading History -->
+  <div class="dashboard-section">
+    <h2 class="section-title">Reading History</h2>
+    <div class="card-container">
+      <div class="dashboard-card"></div>
+      <div class="dashboard-card"></div>
+      <div class="dashboard-card"></div>
     </div>
-    <div class="dashboard-reading-history">
-        Reading History
+  </div>
+
+  <!-- My Book Reports -->
+  <div class="dashboard-section">
+    <h2 class="section-title">My Book Reports</h2>
+    <div class="card-container">
+      <div class="dashboard-card"></div>
+      <div class="dashboard-card"></div>
     </div>
-    <div class="dashboard-my-book-reports">
-        My Book Reports 
-    </div>
+  </div>
+
 </div>

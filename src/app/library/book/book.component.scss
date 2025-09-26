@@ -1,45 +1,118 @@
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px; /* space between cards */
-}
-
 .book-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #ccc; /* subtle border */
-  border-radius: 8px; /* rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* soft shadow */
-  padding: 16px; /* spacing inside card */
-  margin: 12px; /* spacing between cards */
-  width: 100vw;
-  // min-width: 200px; /* optional width limit */
-  // max-width: 300px;
-  background-color: #fff; /* card background */
+  width: 180px;
+  height: 380px;                  /* fixed card height */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: grid;
+  grid-template-rows: auto 1fr auto;  /* title | image | button */
+  padding: 10px;
+  cursor: pointer;
 }
 
 .book-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
+/* Title at top, max 5 lines */
 .book-title {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 8px;
+  font-size: 1.1rem;
+  margin: 0 0 6px 0;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;        /* max 5 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.book-author,
-.book-published,
-.book-genre {
-  font-size: 0.9em;
-  color: #555;
-  margin: 2px 0;
+/* Image wrapper centered in middle */
+.book-cover-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  margin-bottom: 10px;
 }
 
 .book-cover {
-  height: 100px;
-  width: 75px;
+  max-width: 100%;
+  max-height: 160px;   /* smaller max height */
+  object-fit: contain;
 }
+
+/* Author and published below image */
+.book-author,
+.book-published {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 2px 0;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Button stays at bottom */
+.book-add {
+  width: 100%;
+  padding: 6px 12px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  justify-self: end;  /* stick to bottom of grid */
+}
+
+.book-add:hover {
+  background-color: #222;
+}
+
+
+// .card-container {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 16px; /* space between cards */
+// }
+
+// .book-card {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   border: 1px solid #ccc; /* subtle border */
+//   border-radius: 8px; /* rounded corners */
+//   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* soft shadow */
+//   padding: 16px; /* spacing inside card */
+//   margin: 12px; /* spacing between cards */
+//   width: 100vw;
+//   // min-width: 200px; /* optional width limit */
+//   // max-width: 300px;
+//   background-color: #fff; /* card background */
+// }
+
+// .book-card:hover {
+//   transform: translateY(-2px);
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+// }
+
+// .book-title {
+//   font-size: 1.2em;
+//   font-weight: bold;
+//   margin-bottom: 8px;
+// }
+
+// .book-author,
+// .book-published,
+// .book-genre {
+//   font-size: 0.9em;
+//   color: #555;
+//   margin: 2px 0;
+// }
+
+// .book-cover {
+//   height: 100px;
+//   width: 75px;
+// }

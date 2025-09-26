@@ -1,0 +1,43 @@
+<!-- detail.component.html -->
+<div class="book-detail">
+  <!-- Cover Section -->
+  <div class="cover-gallery">
+
+      <img
+        *ngFor="let coverId of book.covers"
+        [src]="'https://covers.openlibrary.org/b/id/' + coverId + '-L.jpg'"
+        alt="Book Cover"
+      />
+
+  </div>
+
+  <!-- Title & Author -->`
+  <div class="book-header">
+    <h1>{{ book.title }}</h1>
+    <p class="author" *ngFor="let a of book.fullAuthors">
+      {{ a.name }}
+    </p>
+  </div>
+
+  <!-- Description -->
+  <div class="book-description" *ngIf="book.description">
+    <h2>Description</h2>
+    <p>{{ bookDescription }}</p>
+  </div>
+
+  <!-- Subjects -->
+  <div class="book-subjects" *ngIf="book.subjects?.length">
+    <h2>Subjects</h2>
+    <ul>
+      <li *ngFor="let subject of book.subjects">{{ subject }}</li>
+    </ul>
+  </div>
+
+  <!-- Places -->
+  <div class="book-places" *ngIf="book.subjectPlaces?.length">
+    <h2>Places</h2>
+    <ul>
+      <li *ngFor="let place of book.subjectPlaces">{{ place }}</li>
+    </ul>
+  </div>
+</div>

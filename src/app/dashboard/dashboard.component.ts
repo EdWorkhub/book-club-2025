@@ -11,8 +11,22 @@ export class DashboardComponent {
 
   constructor(private router: Router) {}
 
-  navigateToLibrary() {
-    this.router.navigate(['library']);
+
+  // Router Functions 
+  navToLibrary() {
+    this.router.navigate(['/library']);
+  }
+
+  navToSearch() {
+    this.router.navigate(['/search']);
+  }
+
+  navToMembers() {
+    this.router.navigate(['/members']);
+  }
+
+  navToLogin() {
+    this.router.navigate(['/login']);
   }
 
 }

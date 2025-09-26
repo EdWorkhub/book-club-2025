@@ -1,8 +1,24 @@
-<app-book *ngFor="let book of bookList"
-[bookTitle]="book.Title"
-[bookAuthor]="book.Author"
-[bookPublished]="book.Published"
-[bookGenre]="book.Genre"
-[bookImage]="book.Image"
->
-</app-book>
+<div class="library-header-container">
+  <h1 class="library-header">Workhub's Library</h1>
+</div>
+
+<div class="library-buttons">
+  <button class="navigate" (click)="navigateToSearch()">Search</button>
+  <button class="navigate" (click)="navigateToMembers()">Members</button>
+  <button class="navigate" (click)="navigateToDashboard()">Dashboard</button>
+</div>
+
+<div class="library-card-grid">
+  <app-book
+    (click)="navigateToDetail(book)"
+    *ngFor="let book of dbList"
+    [bookTitle]="book.title"
+    [bookAuthor]="book.author"
+    [bookDescription]="book.description"
+    [bookPublished]="book.published"
+    [bookImage]="book.imageUrl"
+    [bookPages]="book.pages"
+    [bookISBN]="book.bookISBN"
+  >
+  </app-book>
+</div>

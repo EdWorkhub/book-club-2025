@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Amanda Wondergem",
+    "role": "Design",
+    "team": "Compliance",
+    "email": "amanda.wondergem@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "June 2025",
+    "photoUrl": "../assets/amanda.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Brian Nodwell",
+    "role": "El Presidente",
+    "team": "Corporate",
+    "email": "brian.nodwell@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "Drillingworks lol",
+    "photoUrl": "../assets/brian.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Danielle Zummack",
+    "role": "Content",
+    "team": "Content",
+    "email": "danielle.zummack@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "2018",
+    "photoUrl": "../assets/danielle.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Doug Penner",
+    "role": "COO",
+    "team": "Corporate",
+    "email": "doug.penner@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "2018",
+    "photoUrl": "../assets/doug.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Hunter Kimmett",
+    "role": "Team Lead",
+    "team": "Rewards",
+    "email": "hunter.kimmett@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "2020",
+    "photoUrl": "../assets/hunter.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Mike Carney",
+    "role": "Product",
+    "team": "Compliance",
+    "email": "mike.carney@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "Drillingworks lol",
+    "photoUrl": "../assets/mike.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Natalie Gillanders",
+    "role": "Kitchen",
+    "team": "Top Dawg",
+    "email": "natalie.gillanders@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "2015",
+    "photoUrl": "../assets/natalie.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Nidhi Chopra",
+    "role": "Customer Success",
+    "team": "Customer Success",
+    "email": "nidhi.chopra@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "2023",
+    "photoUrl": "../assets/nidhi.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Russell McMurtry",
+    "role": "Departmental Lead",
+    "team": "Design",
+    "email": "russell.mcmurtry@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "2019",
+    "photoUrl": "../assets/russell.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Sahar Ahangar",
+    "role": "Departmental Lead",
+    "team": "Accounting",
+    "email": "sahar.ahangar@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "2018",
+    "photoUrl": "../assets/sahar.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Vicky Jalbert",
+    "role": "Content",
+    "team": "Content",
+    "email": "vicky.jalbert@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "2018",
+    "photoUrl": "../assets/vicky.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Elizabeth Nodwell",
+    "role": "Laser Engraver",
+    "team": "Rewards",
+    "email": "elizabeth.nodwell@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "Drillingworks lol",
+    "photoUrl": "../assets/elizabeth.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Mac Mcnicol",
+    "role": "Product",
+    "team": "Form Tools & Ongoing Tasks",
+    "email": "mac.mcnicol@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "2020",
+    "photoUrl": "../assets/mac.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Ray BUSSYclat",
+    "role": "Team Lead",
+    "team": "RICK Team, TEAM rick",
+    "email": "ray.masiclat@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "2018",
+    "photoUrl": "../assets/ray.jpg",
+    "status": "Active"
+  },
+  {
+    "name": "Virendra Pal Singh",
+    "role": "Departmental Lead",
+    "team": "Infrastructure / IT",
+    "email": "virendra.singh@workhub.com",
+    "location": "Calgary, AB",
+    "joinDate": "2023",
+    "photoUrl": "../assets/virendra.jpg",
+    "status": "Active"
+  }
+]

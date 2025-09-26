@@ -1,0 +1,64 @@
+import { Component } from '@angular/core';
+import { LibraryService } from '../../service/library.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { OpenLibraryBook } from '../../interfaces/book.interface';
+
+@Component({
+  selector: 'app-search',
+  standalone: false,
+  templateUrl: './search.component.html',
+  styleUrl: './search.component.scss'
+})
+export class SearchComponent {
+
+  constructor(private router: Router, private libraryService: LibraryService) {}
+
+  // Imports OL Interface from Service
+  books: OpenLibraryBook[] = [];
+
+  searchForm = new FormGroup({
+    searchAll: new FormControl(''),
+    searchTitle: new FormControl(''),
+    searchAuthor: new FormControl('')
+  });
+
+  navigateToDetail(book: OpenLibraryBook) {
+    // Navigate via specific route to component (ie with an ID) by replacing the routing module /:id with relevant key in navigator function
+    const id = book.olid;
+    this.router.navigate(['/search', id]);
+  }
+
+  // Passes local search values into Service search function
+  searchTitle() {
+    const { searchAll, searchTitle, searchAuthor } = this.searchForm.value
+    this.libraryService.getSearchResult(searchAll, searchTitle, searchAuthor).subscribe((data) => {
+      this.books = data;
+    })
+  }
+
+  // Converts selected book from OL Book type to Local dbBook type and saves to LocalDB 
+  addBookToDB(book: OpenLibraryBook) {
+    this.libraryService.saveBook(book).subscribe({
+      next: res => {
+        console.log('Book saved!', res);
+      },
+      error: err => {
+        console.error("Save failed!", err)
+      }
+    });
+  }
+
+  // Router Functions 
+  navigateToLibrary() {
+    this.router.navigate(["/library"]);
+  }
+
+  navigateToMembers() {
+    this.router.navigate(["/members"]);
+  }
+
+  navigateToDashboard() {
+    this.router.navigate(["/dashboard"]);
+  }
+}

@@ -1,0 +1,34 @@
+<!-- detail.component.html -->
+<div class="book-detail">
+  <!-- Cover Section -->
+  <div class="cover-gallery">
+    <img
+      [src]="book.imageUrl"
+      alt="Book Cover"
+    />
+  </div>
+
+  <!-- Title & Author -->
+  <div class="book-header">
+    <h1>{{ book.title }}</h1>
+    <p class="book-author"> 
+      {{ book.author }}
+    </p> 
+  </div>
+
+  <!-- Description -->
+  <div class="book-description" 
+  [innerHTML]="book.description">
+  </div>
+  
+
+  <!-- Subjects -->
+  <div class="book-subjects">
+    <h2>Data</h2>
+
+    <p>Published: {{ book.published }}</p>
+    <p># of Pages: {{ book.pages }}</p>
+    <p>ISBN: {{ book.isbn }}</p>
+  </div>
+
+</div>

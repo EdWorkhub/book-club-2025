@@ -1,0 +1,38 @@
+<!-- Top Navigation -->
+<div class="members-topbar">
+  <h1 class="members-header">Book Club</h1>
+  <h2 class="members-user-welcome">
+    Welcome to BBC,
+    <div *ngIf="userProfile.displayName">
+      {{ userProfile.displayName }},
+    </div>
+    {{ userProfile.email }}!
+  </h2>
+  <nav class="members-nav">
+    <button class="nav-button" (click)="navigateToDashboard()">Dashboard</button>
+    <button class="nav-button" (click)="navigateToLibrary()">Library</button>
+    <button class="nav-button" (click)="navigateToSearch()">Search</button>
+    <button class="nav-button active">Members</button>
+  </nav>
+</div>
+
+<!-- Members Section -->
+<div class="members-container">
+  <h2 class="section-title">Workhub’s Members</h2>
+
+  <div class="card-container">
+    <app-member
+      (click)="navigateToMemberDetail(member)"
+      *ngFor="let member of membersDBList"
+      [memberName]="member.name"
+      [memberRole]="member.role"
+      [memberTeam]="member.team"
+      [memberEmail]="member.email"
+      [memberLocation]="member.location"
+      [memberJoinDate]="member.joinDate"
+      [memberPhoto]="member.photoUrl"
+      [memberStatus]="member.status"
+      >
+    </app-member>
+  </div>
+</div>
