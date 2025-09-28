@@ -9,12 +9,13 @@ export interface OpenLibraryBook {
 
 // OpenLibrary Detail Interface 
 export interface OpenLibraryBookDetail {
+  fullAuthors?: any;
   // key is olid
   key: string; 
   covers: string[]; 
   authors: string[]; 
   title: string;
-  description: string;
+  description?: string | { type: string; value: string };
   subjectPlaces: string[];
   subjectTimes: string;
   subjects: string[];
@@ -32,7 +33,7 @@ export interface LocalBook {
   author: string;
   published: string | null;
   imageUrl: string | null;
-  pages?: number;
+  pages?: string;
 
   description?: string | { value: string }; 
   covers?: string[];

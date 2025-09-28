@@ -7,18 +7,20 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-search-detail',
   standalone: false,
   templateUrl: './search-detail.component.html',
-  styleUrl: './search-detail.component.scss'
+  styleUrl: './search-detail.component.scss',
 })
 export class SearchDetailComponent {
-
   // Need to fix this any and convert to BookDetail but have extraneous req/res properties to resolve
   book: any;
 
-  constructor(private route: ActivatedRoute, private libraryService: LibraryService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private libraryService: LibraryService
+  ) {}
 
-  olBookDetail?: OpenLibraryBookDetail
+  olBookDetail?: OpenLibraryBookDetail;
 
-  // OL is fucking annoying 
+  // OL is fucking annoying
   get bookDescription(): string {
     // if missing, just hide
     if (!this.book.description) return '';
@@ -37,12 +39,13 @@ export class SearchDetailComponent {
   ngOnInit(): void {
     // id becomes id passed in from ActivatedRoute (when clicked on from list)
     const id = this.route.snapshot.paramMap.get('id');
-    // Then calls OL Detail api and populates 
-    this.libraryService.getOpenLibraryBookDetail(id).subscribe(data => {
-      console.log(data); 
+    // Then calls OL Detail api and populates
+    this.libraryService.getOpenLibraryBookDetail(id).subscribe((data) => {
+      console.log(data);
       this.book = data;
-    })
-    // Seeing if I can easily populate ISBN data from first edition of work 
+    });
+
+    // Seeing if I can easily populate ISBN data from first edition of work
     // this.libraryService.getOpenLibraryBookDetailEditions(id).subscribe(response => {
     //   console.log(response);
     //   const editionsArray = response.entries;
@@ -50,6 +53,19 @@ export class SearchDetailComponent {
     //   console.log("ISBN:", bestIsbn);
     //   return bestIsbn;
     // })
-  }
 
+  };
+
+  // Converts selected book from OL Book type to Local dbBook type and saves to LocalDB
+  addBookToDB(book: OpenLibraryBookDetail) {
+    console.log(book);
+    this.libraryService.saveBook(book).subscribe({
+      next: (res) => {
+        console.log('Book saved!', res);
+      },
+      error: (err) => {
+        console.error('Save failed!', err);
+      },
+    });
+  }
 }

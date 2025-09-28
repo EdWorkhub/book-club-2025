@@ -19,6 +19,10 @@
     </p>
   </div>
 
+  <div>
+    <button class="detail-button" (click)="addBookToDB(book)">Add to DB</button>
+  </div>
+
   <!-- Description -->
   <div class="book-description" *ngIf="book.description">
     <h2>Description</h2>

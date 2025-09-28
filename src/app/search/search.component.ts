@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LibraryService } from '../../service/library.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { OpenLibraryBook } from '../../interfaces/book.interface';
+import { OpenLibraryBook, OpenLibraryBookDetail } from '../../interfaces/book.interface';
 
 @Component({
   selector: 'app-search',
@@ -38,7 +38,7 @@ export class SearchComponent {
   }
 
   // Converts selected book from OL Book type to Local dbBook type and saves to LocalDB 
-  addBookToDB(book: OpenLibraryBook) {
+  addBookToDB(book: OpenLibraryBookDetail) {
     this.libraryService.saveBook(book).subscribe({
       next: res => {
         console.log('Book saved!', res);

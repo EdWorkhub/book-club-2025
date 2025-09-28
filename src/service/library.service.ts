@@ -34,19 +34,22 @@ export class LibraryService {
 
   // DTO Mapping from OL to Local
   // Takes in book value of Book (OL) type and returns dbBook (local) shape
-  bookDTO(book: OpenLibraryBook): LocalBook {
-    return {
-      title: book.title,
-      author: book.author,
-      published: String(book.year),
-      imageUrl: book.coverUrl ?? '',
-      id: 0,
-      olId: ''
-    };
-  }
+bookDTO(book: OpenLibraryBookDetail): LocalBook {
+  return {
+    title: book.title,
+    author: book.fullAuthors?.[0]?.name ?? '',  
+    published: book.firstPublishDate,          
+    imageUrl: book.covers?.[0] ?? '',
+    olId: book.key,
+    pages: book.pages,
+    description: typeof book.description === 'string'
+      ? book.description
+      : book.description?.value ?? ''           
+  };
+}
 
   // Passes Book obj through DTO and saves dbBook to LocalDB 
-  saveBook(book: OpenLibraryBook): Observable<any> {
+  saveBook(book: OpenLibraryBookDetail): Observable<LocalBook> {
     const dbObj = this.bookDTO(book);
     return this.http.post<any>(`${this.localApi}/books`, dbObj);
   }
