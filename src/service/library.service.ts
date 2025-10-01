@@ -2,28 +2,30 @@ import { Injectable } from '@angular/core';
 import dbSampleData from '../json/db-data.json';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
-import { OpenLibraryBook, OpenLibraryBookDetail, LocalBook } from '../interfaces/book.interface';
+import {
+  OpenLibraryBook,
+  OpenLibraryBookDetail,
+  LocalBook,
+} from '../interfaces/book.interface';
 import jsonSampleData from '../json/bbc-book-data.json';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class LibraryService {
-
   constructor(private http: HttpClient) {}
 
-  // Array of dbBook objects used as template for loading from local DB 
+  // Array of dbBook objects used as template for loading from local DB
   dbBooks: LocalBook[] = [];
 
   // Local API
   private localApi = 'http://localhost:3000';
-  // OL API 
+  // OL API
   private openLibraryApi = 'http://localhost:3000/api/books';
 
-  // LOCAL API FUNCTIONS 
+  // LOCAL API FUNCTIONS
 
-  // Run onInit in LibraryComponent, fetches all books currently in local DB 
+  // Run onInit in LibraryComponent, fetches all books currently in local DB
   getLocalBooks() {
     return this.http.get<any[]>(`${this.localApi}/books`);
   }
@@ -34,44 +36,55 @@ export class LibraryService {
 
   // DTO Mapping from OL to Local
   // Takes in book value of Book (OL) type and returns dbBook (local) shape
-bookDTO(book: OpenLibraryBookDetail): LocalBook {
-  return {
-    title: book.title,
-    author: book.fullAuthors?.[0]?.name ?? '',  
-    published: book.firstPublishDate,          
-    imageUrl: book.covers?.[0] ?? '',
-    olId: book.key,
-    pages: book.pages,
-    description: typeof book.description === 'string'
-      ? book.description
-      : book.description?.value ?? ''           
-  };
-}
+  bookDTO(book: OpenLibraryBookDetail): LocalBook {
+    return {
+      title: book.title,
+      author: book.fullAuthors?.[0]?.name ?? '',
+      published: book.firstPublishDate,
+      // Makes id functional url 
+      imageUrl: this.cleanImg(book.covers?.[0]) ?? '',
+      olId: book.key,
+      pages: book.pages,
+      description:
+        typeof book.description === 'string'
+          ? book.description
+          : book.description?.value ?? '',
+    };
+  }
 
-  // Passes Book obj through DTO and saves dbBook to LocalDB 
+  // Changes imageID from OpenLibraryBook into actual usable URL 
+  cleanImg(imageUrl: string): string {
+    let cleanedImageUrl =
+      `https://covers.openlibrary.org/b/id/` + imageUrl + '-L.jpg';
+    return cleanedImageUrl;
+  }
+
+  // Passes Book obj through DTO and saves dbBook to LocalDB
   saveBook(book: OpenLibraryBookDetail): Observable<LocalBook> {
     const dbObj = this.bookDTO(book);
     return this.http.post<any>(`${this.localApi}/books`, dbObj);
   }
 
-  // Post JSON data to Local DB 
+  // Post JSON data to Local DB
   postToDB() {
-    // requests is filtered any[] -> this clears undefined error from chatGPT, will need to investigate further in future 
-    const requests = (dbSampleData as any[]).filter(book => !!book).map(book => 
-      // push each books obj to /books
-     this.http.post<any[]>(`${this.localApi}/books`, book)
-  );
-    
-  // forkJoin allows to wait for all observables to emit and then only performs result behavior when emissions complete 
+    // requests is filtered any[] -> this clears undefined error from chatGPT, will need to investigate further in future
+    const requests = (dbSampleData as any[])
+      .filter((book) => !!book)
+      .map((book) =>
+        // push each books obj to /books
+        this.http.post<any[]>(`${this.localApi}/books`, book)
+      );
+
+    // forkJoin allows to wait for all observables to emit and then only performs result behavior when emissions complete
     forkJoin(requests).subscribe({
-      next: responses => {
-        console.log("posted", responses);
+      next: (responses) => {
+        console.log('posted', responses);
       },
-      error: err => {
-        console.error("post failed", err);
-      }
+      error: (err) => {
+        console.error('post failed', err);
+      },
     });
-  };
+  }
 
   // Parse original BBC JSON, again
   fetchData() {
@@ -82,7 +95,7 @@ bookDTO(book: OpenLibraryBookDetail): LocalBook {
       description: item.Description,
       published: item.DateSuggested,
       imageUrl: item.ImageUrl,
-      pages: item.PagesCount
+      pages: item.PagesCount,
     }));
 
     console.log(this.dbBooks);
@@ -100,11 +113,13 @@ bookDTO(book: OpenLibraryBookDetail): LocalBook {
     URL.revokeObjectURL(url);
   }
 
-  // OL API FUNCTIONS 
+  // OL API FUNCTIONS
 
-  // Get Book Detail page 
+  // Get Book Detail page
   getOpenLibraryBookDetail(olId) {
-    return this.http.get<OpenLibraryBookDetail>(`${this.openLibraryApi}${olId}`)
+    return this.http.get<OpenLibraryBookDetail>(
+      `${this.openLibraryApi}${olId}`
+    );
   }
 
   // Get Editions for ISBN as it is not stored at the generic 'work' level
@@ -112,7 +127,7 @@ bookDTO(book: OpenLibraryBookDetail): LocalBook {
     return this.http.get<any>(`${this.openLibraryApi}${olId}/editions.json`);
   }
 
-  // // Edition Sorting 
+  // // Edition Sorting
   // getBestIsbn(editions: any[]): string | null {
   //   if (!editions?.length) return null;
 
@@ -161,7 +176,6 @@ bookDTO(book: OpenLibraryBookDetail): LocalBook {
     title?: string,
     author?: string
   ): Observable<OpenLibraryBook[]> {
-
     let queryParams = new HttpParams();
     [
       ['search', search],
@@ -174,11 +188,13 @@ bookDTO(book: OpenLibraryBookDetail): LocalBook {
     const fullUrl = `${this.openLibraryApi}?${queryParams.toString()}`;
     console.log(fullUrl);
 
-    return this.http.get<OpenLibraryBook[]>(this.openLibraryApi, { params: queryParams });
+    return this.http.get<OpenLibraryBook[]>(this.openLibraryApi, {
+      params: queryParams,
+    });
   }
 }
 
-// CURRENTLY UNUSED 
+// CURRENTLY UNUSED
 // EXTRACT TITLE / AUTHOR / PUBLISHED DATE JSON DATA FROM BETTER BOOK CLUB JSON
 
 // import jsonSampleData from '../json/bbc-book-data.json';
