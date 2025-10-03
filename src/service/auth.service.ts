@@ -10,9 +10,12 @@ export class AuthService {
   // Init firebase object 
   constructor(private firebase: FirebaseService) { }
 
+  private localApi = 'http://localhost:3000';
+
   // Google Provider Login 
     async loginWithGoogle(): Promise<string | null> {
       const provider = new GoogleAuthProvider();
+      console.log('In Auth Service');
 
       try {
         // Also possible to do signInWithRedirect
@@ -24,6 +27,8 @@ export class AuthService {
         const idToken = await user.getIdToken();
 
         // Send ID Token to Backend for Validation 
+        this.validateIdToken(idToken);
+        console.log('Returned idToken: ', idToken);
         return idToken;
 
     } catch (err) {
@@ -32,17 +37,19 @@ export class AuthService {
     }
   }
 
+  // Passes ID to backend and validates aginst Firebase Auth FROM THERE 
   async validateIdToken(idToken) {
     try {
-      const response = await fetch('api/auth/firebase-login', {
+      const response = await fetch(`${this.localApi}/api/auth/firebase-login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({idToken})
+        body: JSON.stringify({ idToken })
       });
 
       const data = await response.json();
+      console.log('Data from validation function:, ', data);
       return data;
 
     } catch (err) {
@@ -53,4 +60,4 @@ export class AuthService {
 }
   // TODO: Email Login 
 
-  // TODO: Anonymous Login 
+  // TODO: Anonymous Login

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FirebaseService } from '../../service/firebase.service';
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,18 +13,19 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class LoginComponent {
 
-  constructor(private firebase: FirebaseService, private router: Router) {}
+  constructor(private firebase: FirebaseService, private auth: AuthService, private router: Router) {}
 
      loginForm = new FormGroup({
       email: new FormControl(''),
       password: new FormControl(''),
     });
 
-    async loginWithGoogle() {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(this.firebase.auth, provider);
-      console.log('User: ', result.user);
-      this.router.navigate(['/dashboard']);
+    async authenticatedLogin() {
+      const result = this.auth.loginWithGoogle()
+      console.log('User: ', result);
+      if (result) {
+        this.router.navigate(['/dashboard']);
+      }
     }
 
     async loginWithEmail() {
@@ -33,5 +35,13 @@ export class LoginComponent {
       console.log('User: ', result.user);
       this.router.navigate(['/dashboard']);
     }
+
+    // DEPRECATED OCTOBER 2 
+    // async loginWithGoogle() {
+    //   const provider = new GoogleAuthProvider();
+    //   const result = await signInWithPopup(this.firebase.auth, provider);
+    //   console.log('User: ', result.user);
+    //   this.router.navigate(['/dashboard']);
+    // }
 
 }
