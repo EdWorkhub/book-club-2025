@@ -6,6 +6,7 @@
   padding: 10px 40px;
   background-color: white;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  height: 120px;
 }
 
 .dashboard-header {
@@ -66,9 +67,22 @@
 
 /* Individual dashboard card (placeholder) */
 .dashboard-card {
+  display: flex; 
+  flex-direction: row;
   width: 180px;
   height: 120px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.dashboard-logo {
+  height: 150px;
+  width: 320px;
+  caret-color: transparent;
+}
+
+// Testing CSS variables as a way to modify styles outside of Angular view encapsulation without using :ng-deep - place this var in the child component
+:host {
+  --book-card-height: 200px;
 }

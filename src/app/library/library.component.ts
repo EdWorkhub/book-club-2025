@@ -24,9 +24,9 @@ export class LibraryComponent implements OnInit {
     });
   };
 
-  parseData() {
-    this.libraryService.postToDB();
-  }
+  // parseData() {
+  //   this.libraryService.postToDB();
+  // }
 
   // Router Functions 
   navigateToSearch() {

@@ -1,6 +1,6 @@
 .book-card {
   width: 180px;
-  height: 380px;                  /* fixed card height */
+  height: var(--book-card-height, 380px); // Fixed card height except where defined in other component css :host
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);

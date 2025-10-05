@@ -20,13 +20,25 @@ export class LoginComponent {
       password: new FormControl(''),
     });
 
-    async authenticatedLogin() {
-      const result = this.auth.loginWithGoogle()
-      console.log('User: ', result);
-      if (result) {
-        this.router.navigate(['/dashboard']);
+    async authLogin() {
+      let member = await this.auth.loginWithGoogle()
+      console.log(member);
+      if (member) {
+      this.router.navigate(['/dashboard']);
+      } else {
+        console.log("Login Failed during frontend authentication!")
       }
     }
+
+    // FOR DEBUGGING LOGIN WITHOUT CALLING AUTH SERVICE 
+    // async authenticatedLogin() {
+    //   const provider = new GoogleAuthProvider()
+    //   const result = await signInWithPopup(this.firebase.auth, provider)
+    //   console.log('User: ', result);
+    //   if (result) {
+    //     this.router.navigate(['/dashboard']);
+    //   }
+    // }
 
     async loginWithEmail() {
       const provider = new GoogleAuthProvider();
@@ -35,13 +47,5 @@ export class LoginComponent {
       console.log('User: ', result.user);
       this.router.navigate(['/dashboard']);
     }
-
-    // DEPRECATED OCTOBER 2 
-    // async loginWithGoogle() {
-    //   const provider = new GoogleAuthProvider();
-    //   const result = await signInWithPopup(this.firebase.auth, provider);
-    //   console.log('User: ', result.user);
-    //   this.router.navigate(['/dashboard']);
-    // }
 
 }

@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Member } from '../interfaces/member.interface';
-import sampleMemberData from '../json/sample-members.json'
-import { forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

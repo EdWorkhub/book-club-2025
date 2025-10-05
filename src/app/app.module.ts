@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -15,6 +14,7 @@ import { MemberComponent } from './members/member/member.component';
 import { BookDetailComponent } from './library/book-detail/book-detail.component';
 import { SearchDetailComponent } from './search/search-detail/search-detail.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { AuthService } from '../service/auth.service';
 
 @NgModule({
   declarations: [

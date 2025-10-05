@@ -1,6 +1,9 @@
 <!-- Top Navigation -->
 <div class="dashboard-topbar">
-  <h1 class="dashboard-header">Book Club</h1>
+  <h1 class="dashboard-header">
+    <img class="dashboard-logo"
+    [src]="logo">
+  </h1>
   <nav class="dashboard-nav">
     <button class="nav-button" (click)="navToLibrary()">Library</button>
     <button class="nav-button" (click)="navToMembers()">Members</button>
@@ -12,44 +15,29 @@
 <!-- Main Dashboard -->
 <div class="dashboard-container">
 
-  <!-- Club Header -->
+  <!-- My Currently Reading -->
   <div class="dashboard-section">
-    <h2 class="section-title">Club Header</h2>
+    <h2 class="section-title">Currently Reading</h2>
     <div class="card-container">
-      <div class="dashboard-card"></div>
-      <div class="dashboard-card"></div>
+      <div class="dashboard-card">
+        <app-book
+          *ngFor="let book of memberBooks"
+          [bookTitle]="book.title"
+          [bookAuthor]="book.author"
+          [bookDescription]="book.description"
+          [bookPublished]="book.published"
+          [bookImage]="book.imageUrl"
+          [bookPages]="book.pages"
+          [bookISBN]="book.bookISBN"
+        >
+        </app-book>
+      </div>
     </div>
   </div>
-
-  <!-- Queue -->
-  <div class="dashboard-section">
-    <h2 class="section-title">Queue</h2>
-    <div class="card-container">
-      <div class="dashboard-card"></div>
-      <div class="dashboard-card"></div>
-      <div class="dashboard-card"></div>
-    </div>
-  </div>
-
-  <!-- Leaderboard -->
-  <div class="dashboard-section">
-    <h2 class="section-title">Leaderboard</h2>
-    <div class="card-container">
-      <div class="dashboard-card"></div>
-      <div class="dashboard-card"></div>
-      <div class="dashboard-card"></div>
-      <div class="dashboard-card"></div>
-    </div>
-  </div>
-
-  <!-- Recent Activity -->
-  <div class="dashboard-section">
-    <h2 class="section-title">Recent Activity</h2>
-    <div class="card-container">
-      <div class="dashboard-card"></div>
-      <div class="dashboard-card"></div>
-    </div>
-  </div>
+  <br>
+  <br>
+  <br>
+  <br>
 
   <!-- Reading History -->
   <div class="dashboard-section">
@@ -69,5 +57,4 @@
       <div class="dashboard-card"></div>
     </div>
   </div>
-
 </div>

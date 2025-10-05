@@ -1,14 +1,23 @@
 import { Injectable } from '@angular/core';
 import { FirebaseService } from './firebase.service';
-import { GoogleAuthProvider, signInWithRedirect, signInWithPopup, User } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithRedirect, signInWithPopup, User, onAuthStateChanged, getAuth, browserLocalPersistence, Auth } from 'firebase/auth';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  user: User | null = null;
+  private _user = new BehaviorSubject<User | null>(null);
+  user$ = this._user.asObservable();
+  private auth: Auth;
 
-  // Init firebase object 
-  constructor(private firebase: FirebaseService) { }
+  constructor(private firebase: FirebaseService) {
+    this.auth = getAuth();
+    onAuthStateChanged(this.auth, user => {
+      this._user.next(user);
+    });
+  }
 
   private localApi = 'http://localhost:3000';
 
@@ -16,13 +25,11 @@ export class AuthService {
     async loginWithGoogle(): Promise<string | null> {
       const provider = new GoogleAuthProvider();
       console.log('In Auth Service');
-
       try {
         // Also possible to do signInWithRedirect
         const result = await signInWithPopup(this.firebase.auth, provider);
         const user = result.user;
         if (!user) return null;
-
         // Get Firebase ID Token 
         const idToken = await user.getIdToken();
 
