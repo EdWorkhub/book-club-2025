@@ -1,20 +1,10 @@
-<div class="search-header-container">
-  <h1 class="search-header">Search Books</h1>
-</div>
-
-<div class="search-bar">
-  <form [formGroup]="searchForm" (ngSubmit)="searchTitle()">
+<div class="search-bar-wrapper">
+  <form [formGroup]="searchForm" (ngSubmit)="searchTitle()" class="search-bar">
     <input formControlName="searchAll" placeholder="All Fields:" />
     <input formControlName="searchTitle" placeholder="Title:" />
     <input formControlName="searchAuthor" placeholder="Author:" />
     <button type="submit">Search</button>
   </form>
-
-  <div class="search-nav-buttons">
-    <button class="navigate" (click)="navigateToLibrary()">Library</button>
-    <button class="navigate" (click)="navigateToMembers()">Members</button>
-    <button class="navigate" (click)="navigateToDashboard()">Dashboard</button>
-  </div>
 </div>
 
 <div class="card-container">

@@ -1,34 +1,57 @@
-<!-- detail.component.html -->
-<div class="book-detail">
+<div class="book-detail-container">
   <!-- Cover Section -->
-  <div class="cover-gallery">
-    <img
-      [src]="book.imageUrl"
-      alt="Book Cover"
-    />
+  <div class="book-detail-cover-gallery">
+    <img [src]="book.imageUrl" alt="Book Cover" />
+    <!-- Trying out title and author in horizontal layout -->
+    <div class="book-detail-header">
+      <h1>{{ book.title }}</h1>
+      <p class="book-detail-author">
+        {{ book.author }}
+      </p>
+    </div>
   </div>
 
-  <!-- Title & Author -->
-  <div class="book-header">
-    <h1>{{ book.title }}</h1>
-    <p class="book-author"> 
-      {{ book.author }}
-    </p> 
+  <div class="book-detail-button-container">
+    <!-- If book not in queue -->
+     <button *ngIf="!currentlyReading" class="book-detail-button" (click)="addToMemberBooks()">
+      Add to Currently Reading
+    </button>
+
+    <!-- If this book in current queue, both available  -->
+    <button *ngIf="currentlyReading" class="book-detail-button" (click)="openReportModal()">
+      Submit Report
+    </button>
+
+    <button *ngIf="currentlyReading" class="book-detail-button" (click)="finishReading()">
+      Finish Reading
+    </button>
   </div>
+
+  <!-- Opens Report Component -->
+  <app-report *ngIf="showModal" [bookId]="book.id" (close)="showModal = false">
+  </app-report>
 
   <!-- Description -->
-  <div class="book-description" 
-  [innerHTML]="book.description">
-  </div>
-  
+  <div class="book-detail-description" [innerHTML]="book.description"></div>
+</div>
 
-  <!-- Subjects -->
-  <div class="book-subjects">
-    <h2>Data</h2>
+<!-- Book Data -->
+<div class="book-data-card" *ngIf="book.published || book.pages || book.isbn">
+  <h2>Book Data</h2>
 
-    <p>Published: {{ book.published }}</p>
-    <p># of Pages: {{ book.pages }}</p>
-    <p>ISBN: {{ book.isbn }}</p>
-  </div>
+  <p *ngIf="book.published"><strong>Published:</strong> {{ book.published }}</p>
+  <p *ngIf="book.pages"><strong># of Pages:</strong> {{ book.pages }}</p>
+  <p *ngIf="book.isbn"><strong>ISBN:</strong> {{ book.isbn }}</p>
+</div>
 
+<!-- Reports Container -->
+<div class="book-detail-reports-container" *ngIf="reports">
+  <ng-container *ngFor="let report of reports">
+    <app-report-submission
+      *ngIf="report.user"
+      [report]="report"
+      [user]="report.user.name"
+    >
+    </app-report-submission>
+  </ng-container>
 </div>

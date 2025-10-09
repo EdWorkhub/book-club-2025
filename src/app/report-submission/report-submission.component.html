@@ -1,0 +1,15 @@
+<div class="report-card">
+  <div class="report-header">
+    <div class="report-meta">
+      <span>Submitted By: {{ user }}</span>
+    </div>
+    <span class="report-date">{{ report.created_at | date:'short' }}</span>
+  </div>
+
+  <div class="report-answers">
+    <div class="answer" *ngFor="let item of parsedAnswers">
+      <strong>{{ item.question }}</strong>
+      <p>{{ item.answer }}</p>
+    </div>
+  </div>
+</div>

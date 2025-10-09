@@ -8,6 +8,7 @@ import { MembersComponent } from './members/members.component';
 import { BookDetailComponent } from './library/book-detail/book-detail.component';
 import { SearchDetailComponent } from './search/search-detail/search-detail.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { ReportsComponent } from './reports/reports.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'member/:id',
     component: MemberDetailComponent
+  },
+  {
+    path: 'reports',
+    component: ReportsComponent
   }
 
 ];

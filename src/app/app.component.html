@@ -1,4 +1,17 @@
 <ng-container *ngIf="authReady && currentUser">
+  <app-nav *ngIf="!isLoginRoute"></app-nav>
+
+  <!-- Global Loading State -->
+  <div class="loading-overlay" *ngIf="isLoading$ | async">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <div class="router-background">
     <router-outlet></router-outlet>
+  </div>
 </ng-container>
+
 <div *ngIf="!authReady">Loading authentication...</div>

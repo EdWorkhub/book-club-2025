@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Member } from '../../interfaces/member.interface';
 import { MembersService } from '../../service/members.service';
-import { FirebaseService } from '../../service/firebase.service';
+import { NavigationService } from '../../service/navigation.service';
+import { LoadingService } from '../../service/loading.service';
 
 @Component({
   selector: 'app-members',
@@ -12,47 +12,45 @@ import { FirebaseService } from '../../service/firebase.service';
 })
 export class MembersComponent {
 
-  constructor(private router: Router, private membersService: MembersService, private firebaseService: FirebaseService) {}
+  constructor(
+    private nav: NavigationService,
+    private membersService: MembersService,
+    private loadingService: LoadingService
+  ) {}
 
   membersList: Member[] = [];
-  membersDBList: Member[] = [];
-  userProfile: any = null; 
-  authUser: any = null; 
   
-
   ngOnInit(): void {
+    this.loadingService.show();
     this.membersService.getDBMembers().subscribe(async data => {
       console.log(data);
-      this.membersDBList = data;
-
-      // Test firestore auth implmentation in template 
-      const user = this.firebaseService.auth.currentUser
-      console.log(user);
-
-      if (user) {
-        this.authUser = user;
-        this.userProfile = await this.firebaseService.getUserProfile(user.uid);
-      }
-      console.log(this.authUser);
-      console.log(this.userProfile);
+      this.membersList = data;
+      this.loadingService.hide();
     })
   }
 
-  navigateToSearch() {
-    this.router.navigate(['/search']);
+  // ROUTER
+  navToLibrary() {
+    this.nav.toLibrary();
   }
 
-  navigateToLibrary() {
-    this.router.navigate(['/library']);
+  navToSearch() {
+    this.nav.toSearch();
   }
 
-  navigateToDashboard() {
-    this.router.navigate(['/dashboard']);
+  navToMembers() {
+    this.nav.toMembers();
   }
 
-  navigateToMemberDetail(member: Member) {
-    const id = member.id;
-    this.router.navigate(['/member', id]);
+  navToLogin() {
+    this.nav.toLogin();
   }
 
+  navToDashboard() {
+    this.nav.toDashboard();
+  }
+
+  navToMemberDetail(member: Member) {
+    this.nav.toMemberDetail(member.id);
+  }
 }

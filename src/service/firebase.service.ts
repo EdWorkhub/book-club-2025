@@ -25,7 +25,6 @@ export class FirebaseService {
 
   // Keeps more than one auth instance from attempting to connect - launches firebase
   this.app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
-
   this.auth = getAuth(this.app);
   this.db = getFirestore(this.app);
 

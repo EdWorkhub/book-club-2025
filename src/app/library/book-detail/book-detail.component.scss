@@ -1,8 +1,10 @@
-/* detail.component.css */
-.book-detail {
+
+.book-detail-container {
   max-width: 900px;
-  margin: 2rem auto;
+  margin: auto;
+  padding-top: 30px;
   padding: 1.5rem;
+  margin-top: 4rem;
   font-family: Arial, sans-serif;
   line-height: 1.6;
   color: #222;
@@ -11,70 +13,74 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.cover-gallery {
+.book-detail-cover-gallery {
   display: flex;
-  gap: 1rem;
-  overflow-x: auto;
+  align-items: center;
+  justify-content: flex-start;
   margin-bottom: 1.5rem;
 }
 
-.cover-gallery img {
+.book-detail-cover-gallery img {
   height: 200px;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-.book-header {
+.book-detail-header {
+  flex: 1;
+  padding-left: 1rem;
+  text-align: center;
+  margin: 0;
   margin-bottom: 1.5rem;
 }
 
-.book-header h1 {
+.book-detail-header h1 {
   font-size: 2rem;
   margin-bottom: 0.3rem;
 }
 
-.book-header .author {
+.book-detail-header .author {
   font-size: 1.1rem;
   color: #555;
 }
 
-.book-header .author a {
+.book-detail-header .author a {
   color: #0077cc;
   text-decoration: none;
 }
 
-.book-header .author a:hover {
+.book-detail-header .author a:hover {
   text-decoration: underline;
 }
 
-.book-description {
+.book-detail-description {
+  margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
-.book-description h2 {
+.book-detail-description h2 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }
 
-.book-subjects, .book-places {
+.book-places {
   margin-bottom: 1.5rem;
 }
 
-.book-subjects h2,
-.book-places h2 {
+
+.book-detail-places h2 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }
 
-.book-subjects ul,
-.book-places ul {
+.book-detail-places ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.book-subjects li,
-.book-places li {
+
+.book-detail-places li {
   background: #e9f2fb;
   display: inline-block;
   margin: 0.3rem;
@@ -83,9 +89,54 @@
   font-size: 0.95rem;
 }
 
-.book-meta {
+.book-detail-meta {
   font-size: 0.9rem;
   color: #444;
   border-top: 1px solid #ddd;
   padding-top: 1rem;
+}
+
+.book-detail-button {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.book-detail-button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 132.5px;
+}
+
+.book-data-card {
+  max-width: 900px;               
+  margin: 2rem auto;              
+  padding: 1.5rem;                
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #222;
+  background: #fafafa;          
+  border-radius: 12px;            
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+}
+
+.book-data-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.book-data-card p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+.book-data-card p strong {
+  color: #222;
 }

@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { LibraryService } from '../../service/library.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { OpenLibraryBook, OpenLibraryBookDetail } from '../../interfaces/book.interface';
+import { OpenLibraryBook } from '../../interfaces/open-library-book.interface';
+import { OpenLibraryBookDetail } from '../../interfaces/open-library-book-detail.interface';
+import { LoadingService } from '../../service/loading.service';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +14,11 @@ import { OpenLibraryBook, OpenLibraryBookDetail } from '../../interfaces/book.in
 })
 export class SearchComponent {
 
-  constructor(private router: Router, private libraryService: LibraryService) {}
+  constructor(
+    private router: Router,
+    private libraryService: LibraryService,
+    private loadingService: LoadingService
+  ) {}
 
   // Imports OL Interface from Service
   books: OpenLibraryBook[] = [];
@@ -23,6 +29,18 @@ export class SearchComponent {
     searchAuthor: new FormControl('')
   });
 
+  ngOnInit(): void {
+    this.loadingService.show();
+    const last = this.libraryService.getLastSearch();
+    this.searchForm.setValue({
+      searchAll: last.searchAll,
+      searchTitle: last.searchTitle,
+      searchAuthor: last.searchAuthor
+    });
+    this.books = last.results;
+    this.loadingService.hide();
+  }
+
   navigateToDetail(book: OpenLibraryBook) {
     // Navigate via specific route to component (ie with an ID) by replacing the routing module /:id with relevant key in navigator function
     const id = book.olid;
@@ -32,8 +50,11 @@ export class SearchComponent {
   // Passes local search values into Service search function
   searchTitle() {
     const { searchAll, searchTitle, searchAuthor } = this.searchForm.value
+    this.loadingService.show();
     this.libraryService.getSearchResult(searchAll, searchTitle, searchAuthor).subscribe((data) => {
       this.books = data;
+      this.libraryService.setLastSearch(searchAll, searchTitle, searchAuthor, data)
+      this.loadingService.hide();
     })
   }
 
@@ -50,15 +71,23 @@ export class SearchComponent {
   }
 
   // Router Functions 
-  navigateToLibrary() {
-    this.router.navigate(["/library"]);
+  navToLibrary() {
+    this.router.navigate(['/library']);
   }
 
-  navigateToMembers() {
-    this.router.navigate(["/members"]);
+  navToSearch() {
+    this.router.navigate(['/search']);
   }
 
-  navigateToDashboard() {
-    this.router.navigate(["/dashboard"]);
+  navToMembers() {
+    this.router.navigate(['/members']);
+  }
+
+  navToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  navToDashboard() {
+    this.router.navigate(['/dashboard']);
   }
 }

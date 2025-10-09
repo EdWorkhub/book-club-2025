@@ -3,28 +3,28 @@
   <div class="photo-gallery">
     <img
       [src]="member.photoUrl"
-      alt="{{ member.name }}'s Photo"
+      (error)="onPhotoError($event)"
     />
   </div>
 
   <!-- Name & Role -->
   <div class="member-header">
-    <h1>{{ member.name }}</h1>
-    <p class="member-role">{{ member.role }}</p>
+    <h1>{{ member?.name }}</h1>
+    <p class="member-role">{{ member?.role }}</p>
   </div>
 
   <!-- Bio / Status -->
   <div class="member-description">
     <h2>Status</h2>
-    <p>{{ member.status }}</p>
+    <p>{{ member?.status }}</p>
   </div>
 
   <!-- Member Data -->
   <div class="member-data">
     <h2>Details</h2>
-    <p>Team: {{ member.team }}</p>
-    <p>Email: {{ member.email }}</p>
-    <p>Location: {{ member.location }}</p>
-    <p>Joined: {{ member.joinDate }}</p>
+    <p>Team: {{ member?.team }}</p>
+    <p>Email: {{ member?.email }}</p>
+    <p>Location: {{ member?.location }}</p>
+    <p>Joined: {{ member?.joinDate }}</p>
   </div>
 </div>

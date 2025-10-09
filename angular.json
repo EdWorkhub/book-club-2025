@@ -60,7 +60,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/utils/toast.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {

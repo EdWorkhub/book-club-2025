@@ -1,0 +1,28 @@
+<div class="dashboard-topbar">
+  <h1 class="dashboard-header">
+    <img class="dashboard-logo"
+    [src]="logo">
+  </h1>
+
+  <nav *ngIf="user" class="dashboard-nav">
+    <button class="nav-button" (click)="navToDashboard()">Dashboard</button>
+    <button class="nav-button" (click)="navToLibrary()">Library</button>
+    <button class="nav-button" (click)="navToMembers()">Members</button>
+    <button class="nav-button" (click)="navToSearch()">Search</button>
+    <button class="nav-button" (click)="navToLogin()">Logout</button>
+  </nav>
+
+  <div class="hamburger-menu" *ngIf="user" (click)="toggleHamburger()">
+    &#9776;
+  </div>
+
+  <!-- Mobile dropdown -->
+  <div class="mobile-nav-dropdown" [class.open]="hamburgerOpen">
+    <button class="nav-button" (click)="navToDashboard()">Dashboard</button>
+    <button class="nav-button" (click)="navToLibrary()">Library</button>
+    <button class="nav-button" (click)="navToMembers()">Members</button>
+    <button class="nav-button" (click)="navToSearch()">Search</button>
+    <button class="nav-button" (click)="navToLogin()">Logout</button>
+  </div>
+</div>
+

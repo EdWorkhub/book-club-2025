@@ -1,6 +1,8 @@
 <div class="member-card">
-  <img class="member-photo" [src]="memberPhoto" alt="{{memberName}}">
-
+  <img class="member-photo"
+   [src]="memberPhoto"
+   (error)="onPhotoError($event)"
+   >
   <h2 class="member-name">{{memberName}}</h2>
   <p class="member-role">{{memberRole}}</p>
   <p class="member-team">{{memberTeam}}</p>

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../service/auth.service';
-import { FirebaseService } from '../service/firebase.service';
-import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth';
+import { User } from 'firebase/auth';
 import { Router } from '@angular/router';
+import { LoadingService } from '../service/loading.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,24 @@ import { Router } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  // Global loading service obvs
+  isLoading$: Observable<boolean>;
+  // For AuthGuard
   authReady = false;
   currentUser: User | null = null;
+  // Exclude nav from showing in Login Component
+  isLoginRoute = false;
 
-  constructor(private router: Router, private firebase: FirebaseService, private authService: AuthService) {
-  }
+  constructor(
+    private router: Router,
+    private loadingService: LoadingService,
+    private authService: AuthService) {
+    // Make loading obvs available within template of entire app
+    this.isLoading$ = this.loadingService.isLoading$;
+    // Exclude Nav from Login page 
+    this.router.events.subscribe(() => {
+    this.isLoginRoute = this.router.url.includes('login');
+  })}
 
   title = 'book-club-2025';
 
@@ -25,7 +39,9 @@ export class AppComponent {
       this.authReady = true;
 
       if (!user) {
-        this.router.navigate(['/login']);
+        console.log("Authorized in AppComponent")
+        // Uncomment this to restore boot to login 
+        // this.router.navigate(['/login']);
       }
     });
   }

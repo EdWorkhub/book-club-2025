@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +14,12 @@ import { MemberComponent } from './members/member/member.component';
 import { BookDetailComponent } from './library/book-detail/book-detail.component';
 import { SearchDetailComponent } from './search/search-detail/search-detail.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { AuthService } from '../service/auth.service';
+import { NavComponent } from './nav/nav.component';
+import { ReportsComponent } from './reports/reports.component';
+import { ReportComponent } from './reports/report/report.component';
+import { CommonModule} from '@angular/common';
+import { ReportSubmissionComponent } from './report-submission/report-submission.component';
+
 
 @NgModule({
   declarations: [
@@ -29,13 +34,18 @@ import { AuthService } from '../service/auth.service';
     BookDetailComponent,
     SearchDetailComponent,
     MemberDetailComponent,
+    NavComponent,
+    ReportsComponent,
+    ReportComponent,
+    ReportSubmissionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    CommonModule,
+],
   providers: [
     provideClientHydration(withEventReplay())
   ],

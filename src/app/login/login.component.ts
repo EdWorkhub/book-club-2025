@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FirebaseService } from '../../service/firebase.service';
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
 
@@ -9,43 +7,40 @@ import { AuthService } from '../../service/auth.service';
   selector: 'app-login',
   standalone: false,
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  // Needs this as component not in universal nav
+  logo: string = './assets/logo.png';
 
-  constructor(private firebase: FirebaseService, private auth: AuthService, private router: Router) {}
+  loginForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
 
-     loginForm = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
-    });
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
-    async authLogin() {
-      let member = await this.auth.loginWithGoogle()
-      console.log(member);
-      if (member) {
-      this.router.navigate(['/dashboard']);
-      } else {
-        console.log("Login Failed during frontend authentication!")
-      }
+  async authLogin(): Promise<void> {
+    try {
+      const member = await this.auth.loginWithGoogle();
+      console.log('Member:', member);
+      if (member) this.router.navigate(['/dashboard']);
+      else console.error('Login failed during frontend authentication!');
+    } catch (err) {
+      console.error('Google login error:', err);
     }
+  }
 
-    // FOR DEBUGGING LOGIN WITHOUT CALLING AUTH SERVICE 
-    // async authenticatedLogin() {
-    //   const provider = new GoogleAuthProvider()
-    //   const result = await signInWithPopup(this.firebase.auth, provider)
-    //   console.log('User: ', result);
-    //   if (result) {
-    //     this.router.navigate(['/dashboard']);
-    //   }
-    // }
-
-    async loginWithEmail() {
-      const provider = new GoogleAuthProvider();
-      const { email, password } = this.loginForm.value;
-      const result = await signInWithEmailAndPassword(this.firebase.auth, email, password);
-      console.log('User: ', result.user);
-      this.router.navigate(['/dashboard']);
-    }
-
+  async loginWithEmail(): Promise<void> {
+    const { email, password } = this.loginForm.value;
+    const member = await this.auth.loginWithEmail(email, password);
+    if (member) this.router.navigate(['/dashboard']);
+    else console.error('Login failed during frontend email authentication!');
+  }
+  catch(err) {
+    console.error('Google login error:', err);
+  }
 }

@@ -1,17 +1,3 @@
-<!-- Top Navigation -->
-<div class="dashboard-topbar">
-  <h1 class="dashboard-header">
-    <img class="dashboard-logo"
-    [src]="logo">
-  </h1>
-  <nav class="dashboard-nav">
-    <button class="nav-button" (click)="navToLibrary()">Library</button>
-    <button class="nav-button" (click)="navToMembers()">Members</button>
-    <button class="nav-button" (click)="navToSearch()">Search</button>
-    <button class="nav-button" (click)="navToLogin()">Logout</button>
-  </nav>
-</div>
-
 <!-- Main Dashboard -->
 <div class="dashboard-container">
 
@@ -19,33 +5,35 @@
   <div class="dashboard-section">
     <h2 class="section-title">Currently Reading</h2>
     <div class="card-container">
-      <div class="dashboard-card">
+      <div  class="dashboard-grid">
         <app-book
           *ngFor="let book of memberBooks"
+          (click)="navigateToDetail(book)"
           [bookTitle]="book.title"
           [bookAuthor]="book.author"
-          [bookDescription]="book.description"
           [bookPublished]="book.published"
           [bookImage]="book.imageUrl"
-          [bookPages]="book.pages"
-          [bookISBN]="book.bookISBN"
         >
         </app-book>
       </div>
     </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
 
   <!-- Reading History -->
   <div class="dashboard-section">
     <h2 class="section-title">Reading History</h2>
     <div class="card-container">
-      <div class="dashboard-card"></div>
-      <div class="dashboard-card"></div>
-      <div class="dashboard-card"></div>
+      <div class="dashboard-grid">
+        <app-book
+          *ngFor="let book of memberBooksHistory"
+          (click)="navigateToDetail(book)"
+          [bookTitle]="book.title"
+          [bookAuthor]="book.author"
+          [bookPublished]="book.published"
+          [bookImage]="book.imageUrl"
+        >
+        </app-book>
+      </div>
     </div>
   </div>
 
@@ -53,8 +41,17 @@
   <div class="dashboard-section">
     <h2 class="section-title">My Book Reports</h2>
     <div class="card-container">
-      <div class="dashboard-card"></div>
-      <div class="dashboard-card"></div>
+      <div class="dashboard-grid">
+        <app-book
+          *ngFor="let book of memberReportedBooks"
+          (click)="navigateToDetail(book)"
+          [bookTitle]="book.title"
+          [bookAuthor]="book.author"
+          [bookPublished]="book.published"
+          [bookImage]="book.imageUrl"
+        >
+        </app-book>
+      </div>
     </div>
   </div>
 </div>
